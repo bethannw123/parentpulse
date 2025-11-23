@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ParentPulse - Academic Monitoring for Parents</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-size: 1.1em;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        /* Sections */
+        section {
+            background: white;
+            margin: 40px auto;
+            padding: 60px 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        section h2 {
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            color: #667eea;
+            text-align: center;
+        }
+        
+        section p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .problem-list {
+            background: #fff3cd;
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 5px solid #ffc107;
+            margin: 30px 0;
+        }
+        
+        .problem-list p {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 15px;
+        }
+        
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .feature {
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-top: 4px solid #667eea;
+        }
+        
+        .feature h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .feature-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        /* How It Works */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .step {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+        
+        .step h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        /* Beta Benefits */
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .benefit {
+            display: flex;
+            align-items: start;
+            padding: 15px;
+            background: #e7f3ff;
+            border-radius: 8px;
+        }
+        
+        .benefit::before {
+            content: "✓";
+            color: #667eea;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        
+        /* Form Section */
+        .form-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .form-section h2 {
+            color: white;
+        }
+        
+        .form-container {
+            max-width: 600px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .submit-button {
+            width: 100%;
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .submit-button:hover {
+            background: #5568d3;
+        }
+        
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        /* Coming Soon */
+        .coming-soon {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .coming-soon h2 {
+            color: white;
+        }
+        
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+        }
+        
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8em;
+            }
+            
+            .hero p {
+                font-size: 1em;
+            }
+            
+            section {
+                padding: 40px 20px;
+            }
+            
+            .form-container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">ParentPulse</div>
+            <div class="tagline">Your daily pulse on your student's academic progress</div>
+            
+            <div class="hero">
+                <h1>Never Miss Another Grade Drop or Missing Assignment</h1>
+                <p>See all your high schooler's grades, assignments, and academic progress in one simple dashboard - no more logging into five different platforms or being blindsided by report cards.</p>
+                <a href="#signup" class="cta-button">Join the Beta Waitlist</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- The Problem -->
+    <section class="container">
+        <h2>Are You Struggling to Keep Up?</h2>
+        <p>If you're a parent of a high schooler, you know the frustration:</p>
+        
+        <div class="problem-list">
+            <p>You're checking PowerSchool, Google Classroom, Canvas, and teacher emails - and you still don't know if your student is really doing okay.</p>
+        </div>
+        
+        <p>By the time you discover a problem, it's often too late to fix it. A dropped grade. A missing assignment you never knew about. A pattern of struggle that's been building for weeks.</p>
+        
+        <p style="font-weight: bold; font-size: 1.2em; text-align: center; margin-top: 30px; color: #667eea;">You want to support your student's success, but you're flying blind.</p>
+    </section>
+
+    <!-- The Solution -->
+    <section class="container">
+        <h2>Introducing ParentPulse</h2>
+        <p style="text-align: center;">ParentPulse brings all your student's academic information into one clean, easy-to-understand dashboard.</p>
+        
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <h3>Unified Grade Tracking</h3>
+                <p>See current grades from all classes in one place</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🔔</div>
+                <h3>Missing Assignment Alerts</h3>
+                <p>Get notified immediately when work isn't turned in</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⚠️</div>
+                <h3>Grade Drop Notifications</h3>
+                <p>Know within 24 hours when performance slips</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📈</div>
+                <h3>Progress Trends</h3>
+                <p>Spot patterns before they become problems</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⏰</div>
+                <h3>Real-Time Updates</h3>
+                <p>No more waiting for report cards to see how they're doing</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">✅</div>
+                <h3>Peace of Mind</h3>
+                <p>Catch issues early when they're still fixable</p>
+            </div>
+        </div>
+        
+        <p style="text-align: center; font-weight: bold; font-size: 1.3em; margin-top: 40px; color: #667eea;">Stop juggling multiple platforms. Start staying informed.</p>
+    </section>
+
+    <!-- How It Works -->
+    <section class="container">
+        <h2>Simple. Clear. Actionable.</h2>
+        
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Your Student Connects</h3>
+                <p>Students create an account and input their grades and assignments. Quick, easy, and takes just minutes per week.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>You Get the Full Picture</h3>
+                <p>View a clean dashboard showing all classes, current grades, missing work, and upcoming deadlines - all in one place.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Stay Ahead of Problems</h3>
+                <p>Receive alerts when grades drop or assignments are missing. Catch issues early when they're still fixable.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beta Testers -->
+    <section class="container">
+        <h2>Help Us Build ParentPulse</h2>
+        <p style="text-align: center;">We're launching our beta program and looking for parents who want to be part of creating a better solution for academic monitoring.</p>
+        
+        <div class="benefits">
+            <div class="benefit">Free access to ParentPulse</div>
+            <div class="benefit">Priority support</div>
+            <div class="benefit">Direct input on features and design</div>
+            <div class="benefit">Early access to new features (including our upcoming daily communication digest)</div>
+        </div>
+        
+        <p style="text-align: center; font-weight: bold; margin-top: 30px; font-size: 1.1em;">Expected beta launch: Q1 2025</p>
+    </section>
+
+    <!-- Sign Up Form -->
+    <section class="form-section" id="signup">
+        <div class="container">
+            <h2>Join the Waitlist</h2>
+            <p style="text-align: center;">Sign up below to be notified when we launch. We'll be selecting beta testers from this list, so sign up early to secure your spot.</p>
+            
+            <div class="form-container">
+                <form id="betaForm">
+                    <div class="form-group">
+                        <label for="name">Your Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="grade">Student's Current Grade Level *</label>
+                        <select id="grade" name="grade" required>
+                            <option value="">Select a grade</option>
+                            <option value="9">9th Grade</option>
+                            <option value="10">10th Grade</option>
+                            <option value="11">11th Grade</option>
+                            <option value="12">12th Grade</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="challenge">What's your biggest challenge with monitoring your child's academics?</label>
+                        <textarea id="challenge" name="challenge"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number (optional)</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    
+                    <button type="submit" class="submit-button">Join the Beta Waitlist</button>
+                    
+                    <div class="success-message" id="successMessage">
+                        <strong>Thank you for signing up!</strong><br>
+                        We'll contact you when the beta launches. Check your email for confirmation.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coming Soon -->
+    <section class="coming-soon">
+        <div class="container">
+            <h2>Coming Soon: Daily Communication Digest</h2>
+            <p style="font-size: 1.1em; max-width: 700px; margin: 20px auto;">We know academic monitoring is just part of the challenge. Soon, ParentPulse will also help you manage the flood of school emails, announcements, and extracurricular updates.</p>
+            <p style="font-size: 1.2em; font-weight: bold; margin-top: 30px;">Imagine: One daily summary that tells you everything important - filtered, organized, and actionable.</p>
+            <p style="font-style: italic; margin-top: 20px;">Beta testers will get first access to all new features.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Questions? Email us at <a href="mailto:contact@parentpulse.com">contact@parentpulse.com</a></p>
+            <p style="margin-top: 15px; font-size: 0.9em; opacity: 0.8;">We take your privacy seriously. Your information will never be shared with third parties.</p>
+            <p style="margin-top: 20px; font-size: 0.9em;">© 2024 ParentPulse. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Form submission handling
+        document.getElementById('betaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                grade: document.getElementById('grade').value,
+                challenge: document.getElementById('challenge').value,
+                phone: document.getElementById('phone').value
+            };
+            
+            // Here you would normally send this to your backend or Google Form
+            // For now, we'll just show the success message
+            console.log('Form submitted:', formData);
+            
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Reset form
+            this.reset();
+            
+            // Scroll to success message
+            document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            
+            // Hide success message after 5 seconds
+            setTimeout(function() {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000);
+        });
+        
+        // Smooth scrolling for CTA button
+        document.querySelector('.cta-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('#signup').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
